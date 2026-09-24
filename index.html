@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShowcaseHub — Product Showcase Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>Free shipping on orders above ₹999</span>
+      <span class="topbar-links">
+        <a href="#" id="navAdminLink" class="hidden">Admin Dashboard</a>
+        <a href="#" id="navAuthLink">Login / Register</a>
+      </span>
+    </div>
+  </div>
+
+  <div class="container navbar">
+    <a class="brand" href="#" data-nav="home">
+      <span class="brand-mark">SH</span>
+      <span class="brand-name">ShowcaseHub</span>
+    </a>
+
+    <nav class="mega-nav" id="megaNav">
+      <div class="nav-item has-mega">
+        <button class="nav-link" data-nav="catalog">Catalog</button>
+        <div class="mega-panel">
+          <div class="mega-col" id="megaCategoryList"><!-- injected --></div>
+          <div class="mega-col mega-promo">
+            <p class="eyebrow">This week</p>
+            <h4>Gaming gear, freshly restocked</h4>
+            <p>Browse controllers, headsets and more in the Gaming aisle.</p>
+            <button class="btn btn-light" data-nav="catalog" data-category="Gaming">Shop Gaming</button>
+          </div>
+        </div>
+      </div>
+      <button class="nav-link" data-nav="catalog" data-category="all">All Products</button>
+      <button class="nav-link" data-nav="compare">Compare <span class="nav-count" id="compareCount">0</span></button>
+      <button class="nav-link" data-nav="wishlist">Wishlist <span class="nav-count" id="wishlistCount">0</span></button>
+    </nav>
+
+    <div class="nav-actions">
+      <form class="search-form" id="searchForm">
+        <input type="search" id="searchInput" placeholder="Search products…" aria-label="Search products">
+        <button type="submit" aria-label="Search">🔍</button>
+      </form>
+      <button class="icon-btn" data-nav="wishlist" title="Wishlist">♡<span class="badge" id="wishlistBadge">0</span></button>
+      <button class="icon-btn" data-nav="compare" title="Compare">⇄<span class="badge" id="compareBadge">0</span></button>
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ============ HOME VIEW ============ -->
+  <section class="view" id="view-home">
+
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Product Showcase Platform</p>
+          <h1>See every product<br>the way it deserves.</h1>
+          <p class="hero-sub">Demos, specs, real reviews and side-by-side comparisons — everything a shopper needs to decide with confidence, in one clean catalog.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-nav="catalog">Browse Catalog</button>
+            <button class="btn btn-outline" data-nav="demo">Watch the Demo</button>
+          </div>
+          <div class="hero-stats">
+            <div><strong id="statProducts">0</strong><span>Products listed</span></div>
+            <div><strong id="statCategories">0</strong><span>Categories</span></div>
+            <div><strong id="statReviews">0</strong><span>Verified reviews</span></div>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="float-card fc-1">
+            <span class="fc-emoji">🎧</span>
+            <span class="fc-badge badge-best">🔥 Best Seller</span>
+            <span class="fc-name">Aria Wireless Headset</span>
+            <span class="fc-price">₹4,299</span>
+          </div>
+          <div class="float-card fc-2">
+            <span class="fc-emoji">⌚</span>
+            <span class="fc-badge badge-new">🆕 New Arrival</span>
+            <span class="fc-name">Pulse Fit Watch</span>
+            <span class="fc-price">₹6,999</span>
+          </div>
+          <div class="float-card fc-3">
+            <span class="fc-emoji">👟</span>
+            <span class="fc-badge badge-featured">💎 Featured</span>
+            <span class="fc-name">Stride Trail Runners</span>
+            <span class="fc-price">₹3,499</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Shop by category</h2>
+          <p>Six aisles, one clean layout.</p>
+        </div>
+        <div class="category-grid" id="categoryGrid"><!-- injected --></div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Featured products</h2>
+          <p>Hand-picked and freshly stocked.</p>
+        </div>
+        <div class="product-grid" id="featuredGrid"><!-- injected --></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Latest arrivals</h2>
+          <p>Just landed on the shelves.</p>
+        </div>
+        <div class="product-grid" id="newArrivalsGrid"><!-- injected --></div>
+      </div>
+    </section>
+
+    <section class="section alt testimonial-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>What shoppers say</h2>
+          <p>Real feedback from verified buyers.</p>
+        </div>
+        <div class="testimonial-grid" id="testimonialGrid"><!-- injected --></div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <div class="container cta-inner">
+        <div>
+          <h2>Ready to compare before you buy?</h2>
+          <p>Add up to four products to the comparison table and see specs side by side.</p>
+        </div>
+        <button class="btn btn-light" data-nav="catalog">Start Browsing</button>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============ CATALOG VIEW ============ -->
+  <section class="view hidden" id="view-catalog">
+    <div class="container catalog-layout">
+      <aside class="filters" id="filterPanel">
+        <div class="filter-block">
+          <h3>Search</h3>
+          <input type="search" id="catalogSearch" placeholder="Search this catalog…">
+        </div>
+        <div class="filter-block">
+          <h3>Categories</h3>
+          <div id="filterCategories" class="filter-options"><!-- injected --></div>
+        </div>
+        <div class="filter-block">
+          <h3>Price range</h3>
+          <input type="range" id="priceRange" min="0" max="10000" step="250">
+          <div class="price-range-label">Up to ₹<span id="priceRangeValue">10000</span></div>
+        </div>
+        <div class="filter-block">
+          <h3>Minimum rating</h3>
+          <div id="filterRating" class="filter-options"><!-- injected --></div>
+        </div>
+        <div class="filter-block">
+          <h3>Availability</h3>
+          <div id="filterStatus" class="filter-options"><!-- injected --></div>
+        </div>
+        <button class="btn btn-outline btn-block" id="clearFilters">Clear filters</button>
+      </aside>
+
+      <div class="catalog-main">
+        <div class="catalog-toolbar">
+          <p id="catalogResultCount">Showing all products</p>
+          <label class="sort-label">
+            Sort by
+            <select id="sortSelect">
+              <option value="relevance">Relevance</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating-desc">Rating: High to Low</option>
+              <option value="newest">Newest First</option>
+            </select>
+          </label>
+        </div>
+        <div class="product-grid" id="catalogGrid"><!-- injected --></div>
+        <p class="empty-state hidden" id="catalogEmpty">No products match these filters. Try clearing a few.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CATEGORIES VIEW ============ -->
+  <section class="view hidden" id="view-categories">
+    <div class="container">
+      <div class="section-head">
+        <h2>All categories</h2>
+        <p>Jump straight into an aisle.</p>
+      </div>
+      <div class="category-grid" id="categoryGridFull"><!-- injected --></div>
+    </div>
+  </section>
+
+  <!-- ============ COMPARISON VIEW ============ -->
+  <section class="view hidden" id="view-compare">
+    <div class="container">
+      <div class="section-head">
+        <h2>Compare products</h2>
+        <p>Add up to 4 products from any product card to compare specs side by side.</p>
+      </div>
+      <div id="compareTableWrap"><!-- injected --></div>
+      <p class="empty-state hidden" id="compareEmpty">Your comparison list is empty. Add products from the catalog using the ⇄ button on a product card.</p>
+    </div>
+  </section>
+
+  <!-- ============ WISHLIST VIEW ============ -->
+  <section class="view hidden" id="view-wishlist">
+    <div class="container">
+      <div class="section-head">
+        <h2>Your wishlist</h2>
+        <p>Saved products for later.</p>
+      </div>
+      <div class="product-grid" id="wishlistGrid"><!-- injected --></div>
+      <p class="empty-state hidden" id="wishlistEmpty">Nothing saved yet. Tap the ♡ on any product to add it here.</p>
+    </div>
+  </section>
+
+  <!-- ============ DEMO VIEW ============ -->
+  <section class="view hidden" id="view-demo">
+    <div class="container">
+      <div class="section-head">
+        <h2>Product demo & walkthrough</h2>
+        <p>A guided tour of the platform's core features.</p>
+      </div>
+      <div class="demo-wrap">
+        <div class="demo-player">
+          <div class="demo-screen">
+            <span class="demo-emoji">▶️</span>
+            <p id="demoStepTitle">1. Homepage overview</p>
+          </div>
+          <div class="demo-controls">
+            <button class="btn btn-outline" id="demoPrev">◀ Previous</button>
+            <span id="demoStepCount">1 / 5</span>
+            <button class="btn btn-primary" id="demoNext">Next ▶</button>
+          </div>
+        </div>
+        <ol class="demo-steps" id="demoStepsList"><!-- injected --></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ADMIN VIEW ============ -->
+  <section class="view hidden" id="view-admin">
+    <div class="container">
+      <div class="section-head">
+        <h2>Admin dashboard</h2>
+        <p>Inventory and catalog overview.</p>
+      </div>
+      <div class="admin-stats" id="adminStats"><!-- injected --></div>
+      <div class="admin-panels">
+        <div class="admin-chart-card">
+          <h3>Stock status breakdown</h3>
+          <div id="stockChart" class="bar-chart"><!-- injected --></div>
+        </div>
+        <div class="admin-chart-card">
+          <h3>Products per category</h3>
+          <div id="categoryChart" class="bar-chart"><!-- injected --></div>
+        </div>
+      </div>
+      <div class="admin-table-card">
+        <h3>Manage inventory</h3>
+        <div class="table-scroll">
+          <table class="admin-table" id="adminTable">
+            <thead>
+              <tr><th>Product</th><th>Category</th><th>Price</th><th>Rating</th><th>Status</th><th>Change status</th></tr>
+            </thead>
+            <tbody id="adminTableBody"><!-- injected --></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ PRODUCT DETAIL MODAL ============ -->
+<div class="modal-overlay hidden" id="productModal">
+  <div class="modal modal-product">
+    <button class="modal-close" id="closeProductModal" aria-label="Close">✕</button>
+    <div id="productModalBody"><!-- injected --></div>
+  </div>
+</div>
+
+<!-- ============ AUTH MODAL ============ -->
+<div class="modal-overlay hidden" id="authModal">
+  <div class="modal modal-auth">
+    <button class="modal-close" id="closeAuthModal" aria-label="Close">✕</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login">Log In</button>
+      <button class="auth-tab" data-tab="register">Register</button>
+    </div>
+
+    <form class="auth-form" id="loginForm">
+      <label>Email
+        <input type="email" required placeholder="you@example.com">
+      </label>
+      <label>Password
+        <input type="password" required placeholder="••••••••">
+      </label>
+      <button class="btn btn-primary btn-block" type="submit">Log In</button>
+      <p class="auth-hint">No account needed to demo — any email/password works.</p>
+    </form>
+
+    <form class="auth-form hidden" id="registerForm">
+      <label>Full name
+        <input type="text" required placeholder="Jordan Rivera">
+      </label>
+      <label>Email
+        <input type="email" required placeholder="you@example.com">
+      </label>
+      <label>Password
+        <input type="password" required placeholder="Create a password">
+      </label>
+      <label>Account type
+        <select id="registerRole">
+          <option value="user">Shopper</option>
+          <option value="admin">Admin</option>
+        </select>
+      </label>
+      <button class="btn btn-primary btn-block" type="submit">Create Account</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div class="toast hidden" id="toast"></div>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark">SH</span>
+      <span class="brand-name">ShowcaseHub</span>
+      <p>A product showcase platform built for demos, comparisons and honest reviews.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="#" data-nav="catalog">All Products</a>
+      <a href="#" data-nav="categories">Categories</a>
+      <a href="#" data-nav="wishlist">Wishlist</a>
+      <a href="#" data-nav="compare">Compare</a>
+    </div>
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <a href="#" data-nav="demo">Demo</a>
+      <a href="#" data-nav="admin">Admin Dashboard</a>
+      <a href="#" data-nav="home">Home</a>
+    </div>
+    <div class="footer-col">
+      <h4>Project</h4>
+      <p class="footer-note">MCA academic project — Product Showcase Platform<br>Department of Computer Applications</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 ShowcaseHub. Built for demonstration purposes.</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+                                                                       </html>
+        
